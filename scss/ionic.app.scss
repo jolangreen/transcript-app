@@ -1,0 +1,118 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+$clrBackground: #FFF;
+
+$clrPrimary: #a2cd48;
+$clrSecondary: #47a447;
+$clrTertiary: #4B7FAE;
+
+$clrText: #4f5962;
+$clrTextMute: #b0babf;
+
+$clrBrightest: #fff;
+$clrBright: #f3f5f5;
+$clrMedium: #dadfe1;
+$clrDark: #4f5962;
+$clrDarkest: #383838;
+
+$error: #eb4155;
+
+//Screen Sizes
+$screen-xs: 320px;
+$screen-sm: 415px;
+$screen-md: 769px;
+$screen-lg: 1024px;
+
+@mixin position($top, $right, $bottom, $left, $pos: absolute) {
+    position: $pos;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+//+position(10px, 0, 0, 2px)
+
+@mixin size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+@mixin border($side, $color) {
+    border-#{$side}: 1px solid $color;
+}
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+@import "global";
+@import "layout";
+@import "order";
+
+#orderform .row {
+    margin-right: 0;
+    margin-left: 0;
+    padding: 0;
+    display: block;
+    width: auto;
+}
+
+input[type="date"] {
+    background-image: none;
+    background-image: none;
+    background-image: none;
+    background-image: none;
+    background-image: none;
+    background-image: none;
+    width: 100%;
+    padding: 23px 12px 6px;
+    -webkit-appearance: none;
+}
+
+.popover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  left: 0;
+  z-index: 1060;
+  display: none;
+  max-width: 276px;
+  padding: 1px;
+  text-align: center;
+  white-space: normal;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  }
+
+.popover-title {
+  padding: 8px 14px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 18px;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ebebeb;
+  border-radius: 5px 5px 0 0;
+}

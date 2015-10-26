@@ -1,0 +1,148 @@
+/* ==========================================================================
+   Global
+   ========================================================================== */
+body
+    background: $clrBackground
+    padding: 0px
+    font-family: Arial
+    color: $clrText
+    font-size: 19px
+
+a, a:visited
+    color: $clrSecondary
+    text-decoration: none
+    +transition(all 0.2s ease-in-out)
+
+a:hover, a:focus, a:active
+    color: $clrPrimary
+    text-decoration: none
+
+hr
+    margin: 15px 0
+    border: 0
+    border-bottom: 1px solid $clrMedium
+
+ol
+    margin-bottom: 25px
+    
+/* ==========================================================================
+   Form
+   ========================================================================== */
+
+
+form
+    input[type="text"], input[type="email"], input[type="url"], input[type="date"], input[type="number"], input[type="tel"], input[type="password"], textarea, select
+        color: $clrText
+        font-size: 19px
+        letter-spacing: -0.02em
+        background: $clrBackground
+        background-image: none
+        background-image: none
+        background-image: none
+        background-image: none
+        background-image: none
+        background-image: none
+        border: 1px solid $clrMedium
+        +border-radius(5px)
+        height: 56px
+        padding: 23px 12px 6px
+        +transition(border 0.2s)
+        width: 100%
+        
+
+    textarea
+        height: 200px
+
+    input[type="button"], input[type="submit"]
+        padding: 10px
+        background: $clrPrimary
+        cursor: pointer /* hand-shaped cursor */
+        cursor: hand /* for IE 5.x */
+        border: none
+        color: $clrBrightest
+        font-size: 18px
+        -moz-border-radius: 5px
+        border-radius: 5px
+        &:hover
+            background-color: $clrSecondary
+
+    input:focus, textarea:focus
+        outline: none
+
+    .form-group, .input-group
+        position: relative
+        margin-bottom: 15px
+        +transition(all 0.2s ease-in-out)
+        label            
+            font-family: Arial
+            font-size: 13px
+            font-weight: 500
+            text-transform: uppercase
+            color: #5B6469
+            padding-right: 12px
+            position: absolute
+            left: 13px
+            top: 7px
+            z-index: 100
+            +transition(color 0.2s)
+            &.help-block
+                margin-top: 0
+                color: $error
+
+            &.normal
+                position: relative
+                top: 0
+                left: 0
+                font-size: 16px
+                @media (max-width: $screen-lg)
+                    display: block
+
+        input[required] + label:after, label.required:after
+            font-size: 19px
+            font-weight: 400
+            color: $error
+            display: block
+            position: absolute
+            right: 0
+            top: 0
+            content: "*"
+            line-height: 1.1
+
+    input[type="text"].ng-invalid.ng-dirty, input[type="email"].ng-invalid.ng-dirty
+        border: 1px solid $error !important
+
+    fieldset
+        margin-bottom: 50px
+
+    .required
+        font-size: 19px
+        font-weight: 400
+        color: $error
+
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+
+// Headings
+h1, h2, h3, h4, h5, h6
+    font-family: Arial
+    color: $clrTextMute
+    font-weight: bold
+    margin-top: 0
+
+h1
+    font-size: 40px
+    margin-bottom: 25px
+
+h2
+    font-size: 36px
+    margin-bottom: 15px
+
+h3
+    font-size: 28px
+    margin-bottom: 20px
+
+p
+    margin-bottom: 20px

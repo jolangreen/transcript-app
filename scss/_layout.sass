@@ -1,0 +1,76 @@
+
+.btn, a.btn
+    color: $clrBrightest
+    background: $clrPrimary
+    font-size: 18px
+    //+border-radius(4px)
+    //+box-shadow(0px)
+    +transition(all 0.4s ease-in-out)
+    font-weight: bold
+    behavior: url(../js/ie8_fixes/PIE.htc)
+    &:hover
+        background: $clrSecondary
+        color: $clrBrightest
+
+
+.home-page
+    padding-top: 30px
+
+    .logo
+        margin-top: 80px
+        margin-bottom: 20px
+        img
+            +size(200px, 150px)
+    .button-block
+        width: 100%
+        padding: 0 25px;
+
+    .button
+        
+
+    .button
+        +border-radius(5px)
+        background: $clrTextMute
+        border: none
+        color: white
+        font-size: 22px
+        font-weight: normal
+        line-height: 45px
+        margin: 0 auto 13px
+        padding-left: 20px
+        padding-right: 20px
+        text-align: center
+        width: 250px
+
+.menu
+    background: $clrDark
+    .item, .item a.item-content
+        background: $clrDark
+        color: white
+    .item
+        border-color: #616b73
+
+
+
+.bar-footer
+    height: 50px
+    border: none
+    background: transparent
+    text-align: center
+
+    
+    a.sub-link
+        border: none
+        color: $clrTertiary
+        display: inline-block
+        font-size: 15px
+        margin: 0 auto;
+        text-decoration: underline
+        
+
+
+.bar.bar-stable
+    background: $clrDark
+
+.bar.bar-stable .title, .bar-stable .button.button-clear
+    color: white

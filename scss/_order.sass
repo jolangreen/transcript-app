@@ -1,0 +1,354 @@
+
+.order-page
+    padding-top: 40px
+
+.order .tab-pane
+    min-height: 400px
+    @media (max-width: $screen-md)
+        min-height: 800px
+    @media (max-width: $screen-sm)
+        min-height: 400px
+
+
+.form-next 
+    padding-top: 15px
+    .btn
+        font-size: 30px
+        padding: 10px 20px
+        @media (max-width: $screen-xs)
+            font-size: 25px
+    
+.title-block
+    margin-top: 20px
+
+
+a.return-link
+    display: block
+    margin-top: 15px
+    color: $clrTertiary
+
+#orderform .row
+    margin-right: 0
+    margin-left: 0
+    padding: 0
+    display: block
+    width: auto
+
+
+
+#step1
+    height: 1130px
+#step2
+    height: 470px
+#step3
+    height: 710px
+#step4
+    height: 870px
+
+
+//Package Section
+.packages
+    list-style: none
+    padding-left: 0
+    margin-bottom: 30px
+    text-align: center
+    min-height: 400px
+    & > li
+        border: 1px solid $clrMedium
+        padding: 0
+        width: 100%
+        margin: 0 auto 40px
+        background: #f5f5f5
+        &:hover
+            background: #F8FCFF
+            .packages-price-block
+                background: #F1F8FD
+
+
+        .packages-title-block
+            position: relative
+        .packages-title
+            padding: 15px
+            height: 110px
+            font-size: 28px
+            letter-spacing: -1px
+            +border(bottom, $clrMedium)
+
+        .packages-price-block
+            background: $clrBright
+            padding: 15px
+            text-align: center
+            height: 104px
+            +border(bottom, $clrMedium)
+            .packages-price
+                font-weight: bold
+                font-size: 48px
+                line-height: 48px
+                color: $clrText
+                span
+                    font-size: 30px
+                    position: relative
+                    vertical-align: top
+                .price-numbers
+                    display: inline-block
+            .packages-price-description
+                color: #A1A1A1
+                font-size: 16px
+                line-height: 20px
+        
+
+    .package-button
+        width: 128px
+        height: 57px
+        margin: 20px auto 0
+        display: block
+        position: relative
+        z-index: 1
+        color: white
+        text-align: center
+        cursor: pointer
+        &:hover .button-bg
+            background: url("../img/package-button.png") no-repeat 0 -38px
+     
+
+        .button-bg
+            background: url("../img/package-button.png") no-repeat 0 0
+            +size(128px, 38px)
+            position: absolute
+            top: 0
+            padding-top: 9px
+
+        input[type="radio"]
+            +size(128px, 38px)
+            margin: 1px
+            position: absolute
+            left: 0
+            top: 0
+            z-index: 10           
+            cursor: pointer
+            outline: none
+            opacity: 0
+            _noFocusLine: expression(this.hideFocus=true) 
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+            filter: alpha(opacity=0)
+            -khtml-opacity: 0
+            -moz-opacity: 0
+            -webkit-appearance: none
+            -moz-appearance: none
+            appearance: none
+
+            &.active + .button-bg
+                background-position: 0 -39px
+
+    .popover
+        min-width: 95%
+        box-shadow: 0 3px 7px rgba(0, 0, 0, .2)
+        display: block
+        top: 50px
+        left: 0px
+        right: 0px
+        margin: auto
+        height: 45px
+    .popover-content
+        font-size: 16px
+        text-align: center
+
+    li.package1 .popover, li.package6 .popover
+        display: none
+        
+
+.slider-slide
+    height: auto !important
+
+// Order Form
+form#orderform
+    h3
+        font-size: 36px
+        small 
+            font-size: 14px
+            color: $clrTextMute
+    .form-group
+        margin-bottom: 25px
+
+    .input-group
+        width: 100%
+
+    //Delete
+    .input-group ul.dropdown-menu
+        div[role="application"]
+            padding: 8px
+            &:focus, table:focus
+                outline: none
+
+        td .btn
+            background: $clrBright
+            color: inherit
+
+        .text-muted
+            color: #c4c4c4
+
+        .text-info
+            color: $clrSecondary
+
+        .btn-group .btn
+            border: 1px solid $clrSecondary
+
+    .date-btn
+        min-height: 56px
+        background: $clrMedium
+        padding-left: 16px
+        padding-right: 16px
+        font-size: 20px
+        color: #55636B
+
+    .add-button
+        height: 56px
+        line-height: 56px
+        background: $clrBright
+        color: $clrText
+        padding: 0 14px
+        &:hover
+            background: $clrMedium
+            color: $clrText
+
+    input[type="date"] 
+        background-image: none
+        background-image: none
+        background-image: none
+        background-image: none
+        background-image: none
+        background-image: none
+        width: 100%
+        padding: 23px 12px 6px
+        -webkit-appearance: none
+        border-top-right-radius: 5px
+        border-bottom-right-radius: 5px
+
+    select
+        background: image-url('select-arrow.jpg') no-repeat right $clrBrightest
+        border: 1px solid $clrMedium
+        margin-bottom: 4px
+        padding-left: 15px
+        padding-right: 0px
+        color: $clrText
+        +size(100%, 54px)
+        +border-radius(5px)            
+        +appearance(none)
+        font-size: 19px
+        behavior: url(../js/ie8_fixes/PIE.htc)
+
+        &::-ms-expand 
+            display: none
+
+    .radio-block input[type="radio"]
+        margin-left: 10px
+
+    .date-form-group
+        width: 90%
+        @media (max-width: $screen-sm)
+            width: 100%
+            margin-bottom: 20px
+
+
+
+#orderform.submitted .ng-invalid
+    border: 1px solid $error !important
+
+
+
+/* -----  Progress Bar ----  */
+
+.progress 
+    height: 14px
+    margin-left: 20px
+    margin-right: 25px
+    z-index: -2
+
+.order .navbar
+    margin-bottom: 60px
+
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus
+    border: none
+ul.nav-tabs > li > a:hover, ul.nav-tabs > li > a:focus
+    border: none
+    border-color: none
+    background-color: transparent
+    text-decoration: none
+    color: $clrTextMute
+    outline: none
+
+
+
+ul.nav-tabs
+    border-bottom: none
+    margin: 0 -18px 0 -20px
+    & > li
+        color: #ccc
+        font-size: 12px
+        position: relative
+        display: inline-block
+        padding: 0
+        text-align: center
+        width: 25%
+        border: none
+        z-index: 1
+
+        a 
+            border: none
+            padding-left: 0
+            padding-right: 0
+            color: #ccc
+            font-size: 12px
+            font-weight: 500
+            text-decoration: none
+            display: inline-block
+
+        a:hover
+            color: $clrPrimary
+                    
+
+        &.disabled a
+            z-index: -1
+            color: #ccc
+
+        &.visited, &.active
+            color: $clrDark
+            z-index: 500
+            background: none
+            a
+                color: $clrDark
+                &:before
+                    background: $clrSecondary
+                    z-index: 500
+
+        
+        a:before
+            background: #ddd
+            border: 1px solid #FFF
+            border-radius: 50%
+            color: #fff
+            font-size: 16px
+            font-weight: 700
+            text-align: center
+            +size(46px)
+            line-height: 46px
+            position: absolute
+            top: -51px
+            left: 50%
+            margin-left: -23px
+            z-index: 500
+            font-family: FontAwesome
+
+        &:nth-child(1) a:before
+            content: "\f155"
+           
+        &:nth-child(2) a:before
+            content: "\f044"
+           
+        &:nth-child(3) a:before
+            content: "\f0e3"
+          
+        &:nth-child(4) a:before
+            content: "\f007"
+            

@@ -1,0 +1,249 @@
+<ion-view view-title="Order">
+  <ion-content class="order-page">
+
+	<div class="container">
+	    <div class="progress">
+	        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4" style="width: 0%;"></div>
+	    </div>
+
+	    <div class="navbar">
+	        <div class="navbar-inner">
+	            <ul class="nav nav-tabs" id="myTabs">
+	                <li class="active">
+	                    <a href="#step1" data-toggle="tab" data-step="1" data-progression="0"><i class="fa fa-usd"></i></a>
+	                </li>
+	                <li class="disabled">
+	                    <a href="#step2" data-toggle="tab" data-step="2" data-progression="33.33"><i class="fa fa-pencil-square-o"></i></a>
+	                </li>
+	                <li class="disabled">
+	                    <a href="#step3" data-toggle="tab" data-step="3" data-progression="66.66"><i class="fa fa-plus-square-o"></i></a>
+	                </li>
+	                <li class="disabled">
+	                    <a ng-href="#step4" data-toggle="tab" data-step="4" data-progression="100"><i class="fa fa-user"></i></a>
+	                </li>
+	            </ul>
+	        </div>
+	    </div>
+
+	    <form ng-submit="submit(orderform)" id="orderform" name="orderform" method="post" action="" role="form" ng-class="{submitted: submitted == true}" novalidate> 
+	        <div class="tab-content">
+	            <div class="tab-pane fade in active" id="step1">
+	                <div class="title-block text-center">
+	                    <h3>Select a Service</h3>
+	                </div>
+	                <ul class="packages">
+	                    <li ng-repeat="package in packages" class="col {{package.classID}}">
+	                        <div class="packages-title-block">
+	                            <div class="packages-title">{{package.title}}</div>
+	                            <div class="popover bottom fade in" ng-class="{ in: isOpen(), fade: animation() }" popover-popup="" title="" content="{{package.titleDescription}}" placement="bottom" animation="tt_animation" is-open="tt_isOpen">
+	                              <div class="arrow"></div>
+	                              <div class="popover-inner">
+	                                  <div class="popover-content ng-binding">{{package.titleDescription}}</div>
+	                              </div>
+	                            </div>
+	                        </div>
+	                        <div class="packages-price-block">
+	                            <div class="packages-price"><span>$</span>{{package.price}}</div>
+	                            <div class="packages-price-description">{{package.priceDescription}}</div>
+	                        </div>
+	                        
+	                        <div class="package-button">
+	                            <input type="radio" ng-model="$parent.formData.inputPackage" id="inputPackage" name="inputPackage" value="{{package.title}}" ng-class="{active: formData.inputPackage == package.title}" data-ng-click="goNext(1)">
+	                            <div class="button-bg">
+	                                <span ng-show="formData.inputPackage !== package.title">Select</span>
+	                                <span ng-show="formData.inputPackage == package.title">Selected</span>
+	                            </div>
+	                            <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
+	                        </div>                    
+	                    </li> 
+	                </ul>
+	                <div class="clear"></div>
+	                <p class="text-center" style="margin-bottom:50px;">
+	                    <small>*Electronic copy provided at no extra charge if requested at the same time.<br/>
+	                    **Accepts the following payment: certified cheque or money order, cash, or Interac e-transfer (Due on receipt).</small>
+	                </p>
+	            </div>
+	            <div class="tab-pane fade" id="step2">	                
+	                <div class="row">
+                        <h3>Transcript information <br class="hidden-md hidden-lg"><small>( * denotes required field)</small></h3>
+	                </div>
+	                <div class="row">
+                        <div class="form-group">
+                            <select name="inputWhatsTranscribed" ng-model="formData.inputWhatsTranscribed" id="" class="form-control input-lg" ng-init="formData.inputWhatsTranscribed=''">
+                                <option value="" disabled selected>Select an option</option>
+                                <option ng-repeat="transcript in inputWhatsTranscribed" value="{{transcript.value}}">{{transcript.value}}</option>
+                            </select>
+                            <label>What do you want transcribed?</label>
+                        </div>
+                        <div class="form-group" ng-show="formData.inputWhatsTranscribed=='Other'">
+                            <input type="text" id="inputWhatsTranscribedOther" name="inputWhatsTranscribedOther" ng-model="formData.inputWhatsTranscribedOther" ng-init="formData.inputWhatsTranscribedOther=''" placeholder="Please Explain...">          
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="inputNumberCopies" name="inputNumberCopies" ng-pattern="/^[0-9.-]{1,3}$/" ng-model="formData.inputNumberCopies" placeholder="00" class="number" required>
+                            <label ng-hide="orderform.inputNumberCopies.$error.pattern">Number of Certified Copies</label>
+                            <label class="help-block" ng-show="orderform.inputNumberCopies.$error.pattern">Enter a number</label>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="date" class="form-control" datepicker-popup="{{format}}" ng-model="formData.inputTranscriptDate" name="inputTranscriptDate" is-open="opened1" min-date="minDate" max-date="'2015-11-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" date-format="MM/dd/yyyy" date-type="string" placeholder="MM/DD/YYYY" />
+                                <label class="required">Date transcript is required</label>
+                            </div>                     
+                        </div>
+                        <div class="form-group">
+                            <div class="radio-block">
+                                <label class="normal">Is the transcript for purposes of appeal?<span class="required">*</span></label>
+                                <input type="radio" ng-model="formData.inputAppealPurpose" name="inputAppealPurpose" value="Yes"> Yes
+                                <input type="radio" ng-model="formData.inputAppealPurpose" name="inputAppealPurpose" value="No"> No
+                            </div>
+                        </div>
+                        <div ng-show="formData.inputAppealPurpose=='Yes'">
+                            <h3>Please Specify</h3>
+                            <div class="form-group">
+                                <label class="normal">Appeal to:</label><br/>
+                                <input type="radio" ng-model="formData.inputAppealTo" name="inputAppealTo" value="Court of Appeal for Ontario" ng-init="formData.inputAppealTo=''"> Court of Appeal for Ontario<br/>
+                                <input type="radio" ng-model="formData.inputAppealTo" name="inputAppealTo" value="Divisional Court" ng-init="formData.inputAppealTo=''"> Divisional Court<br/>
+                                <input type="radio" ng-model="formData.inputAppealTo" name="inputAppealTo" value="Superior Court" ng-init="formData.inputAppealTo=''"> Superior Court<br/>
+                                <input type="radio" ng-model="formData.inputAppealTo" name="inputAppealTo" value="Ontario Court" ng-init="formData.inputAppealTo=''"> Ontario Court<br/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="inputAppealNumber" name="inputAppealNumber" ng-pattern="/^[0-9.-]{1,40}$/" ng-model="formData.inputAppealNumber" placeholder="1234" class="number" ng-init="formData.inputAppealNumber=''">
+                                <label>Appeal Number</label>
+                            </div>
+                        </div>
+	                </div>
+	                <hr>
+	                <div class="form-next text-center">
+	                    <a class="btn btn-default btn-lg" href="" data-ng-click="goNext(2)">Continue</a>
+	                    <a class="return-link" href="" data-ng-click="goNext(0)" data-toggle="tab" data-step="1" data-progression="0">Go Back</a>
+	                </div>
+	            </div>
+	            <div class="tab-pane fade" id="step3">
+	                <div class="row">
+                        <h3>Court Case information <br class="hidden-md hidden-lg"><small>( * denotes required field)</small></h3>
+                    </div>
+                    <div class="row">
+	                    <div class="form-group">
+	                        <input type="text" id="inputCourtAddress" name="inputCourtAddress" ng-model="formData.inputCourtAddress" ng-minlength="3" placeholder="100 Address Street City" required>
+	                        <label ng-hide="orderform.inputCourtAddress.$error.minlength">Court Address</label>
+	                        <label class="help-block" ng-show="orderform.inputCourtAddress.$error.minlength">Enter The Court Address</label>
+	                    </div>
+	                    
+	                    <div class="form-group">
+	                        <input type="number" id="inputCourtRoom" name="inputCourtRoom" ng-minlength="1" ng-model="formData.inputCourtRoom" placeholder="1234" class="number" required>
+	                        <label ng-hide="orderform.inputCourtRoom.$error.minlength">Courtroom Number</label>
+	                        <label class="help-block" ng-show="orderform.inputCourtRoom.$error.minlength">Enter a number</label>
+	                    </div>
+	                    
+	                    <div class="form-group">
+	                        <input type="text" id="inputAccusedName" name="inputAccusedName" ng-model="formData.inputAccusedName" ng-minlength="3" placeholder="John Doe" required>
+	                        <label ng-hide="orderform.inputAccusedName.$error.minlength">Name of Accused Person</label>
+	                        <label class="help-block" ng-show="orderform.inputAccusedName.$error.minlength">Enter a full name</label>
+	                    </div>
+	                    
+	                    <div class="form-group">
+	                        <input type="text" id="inputJudgeName" name="inputJudgeName" ng-model="formData.inputJudgeName" placeholder="John Doe" ng-init="formData.inputJudgeName=''">
+	                        <label>Judge / Justice of the Peace Name</label>
+	                    </div>
+
+	                    <div class="form-group">
+	                        <select name="inputProceedingType" ng-model="formData.inputProceedingType" id="" class="form-control input-lg" ng-init="formData.inputProceedingType=''">
+	                            <option value="" disabled selected>Select an option</option>
+	                            <option ng-repeat="proceedingType in inputProceedingType" value="{{proceedingType.value}}" >{{proceedingType.value}}</option>
+	                        </select>
+	                        <label>Type of proceeding?</label>
+	                    </div>
+	                    <div class="form-group" ng-show="formData.inputProceedingType=='Other'">
+	                        <input type="text" id="inputProceedingTypeOther" name="inputProceedingTypeOther" ng-model="formData.inputProceedingTypeOther" ng-init="formData.inputProceedingTypeOther=''" placeholder="Please Explain...">                        
+	                    </div>
+
+	                    <div class="hidden">
+	                        <!-- hidden datePicker - used to fool the second "opened2" date picker  -->
+	                        <input type="hidden" datepicker-popup="{{format}}" ng-model="formData.hidden" name="hiddenfield" is-open="opened2" datepicker-options="dateOptions" close-text="Close" />
+	                    </div>
+	                    
+                        <div data-ng-repeat="inputProceedingDate in inputProceedingDate track by $index" class="date-form-group">
+                            <div class="row">
+                                <div class="input-group">
+                                    <div class="hidden-lg hidden-md hidden-sm hidden-xs">{{$index+1}}</div>
+                                  <input type="date" class="date" datepicker-popup="{{format}}" ng-model="formData.inputProceedingDate[$index]" name="inputProceedingDate" is-open="opened2" datepicker-options="dateOptions" close-text="Close" date-disabled="disabled(date, mode)" placeholder="MM/DD/YYYY" required />
+                                  <label class="required">Date(s) of Proceeding</label>                        
+                                </div>
+                            </div>
+                            <div class="row">
+                                <a href="" class="btn add-button" ng-show="$last" ng-click="addNewChoice()">Add date</a>
+                            </div>
+                        </div>                        
+	                </div>
+	                <hr>
+	                <div class="form-next text-center">
+	                    <a class="btn btn-default btn-lg next" href="" data-ng-click="goNext(3)">Continue</a>
+	                    <a class="return-link" href="" data-ng-click="goNext(1)" data-toggle="tab" data-step="2" data-progression="33.33">Go Back</a>
+	                </div>
+	            </div>
+	            <div class="tab-pane fade" id="step4">            
+	                <div class="row">
+	                    <div class="row">
+	                        <h3>Your information <br class="hidden-md hidden-lg"><small>( * denotes required field)</small></h3>
+	                    </div>
+	                    <div class="row">
+	                        <div class="form-group">
+	                            <input type="text" id="inputFirstName" name="inputFirstName" ng-model="formData.inputFirstName" ng-minlength="2" placeholder="John" required>
+	                            <label ng-hide="orderform.inputFirstName.$error.minlength">Your First Name</label>
+	                            <label class="help-block" ng-show="orderform.inputFirstName.$error.minlength">Enter a first name</label>
+	                        </div>
+	                        <div class="form-group">
+	                            <input type="text" id="inputLastName" name="inputLastName" ng-model="formData.inputLastName" ng-minlength="2" placeholder="Doe" required>
+	                            <label ng-hide="orderform.inputLastName.$error.minlength">Your Last Name</label>
+	                            <label class="help-block" ng-show="orderform.inputLastName.$error.minlength">Enter a last name</label>
+	                        </div>
+	                        <div class="form-group">
+	                            <input type="email" id="inputEmail" name="inputEmail" ng-model="formData.inputEmail" placeholder="name@sample.com" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
+	                            <label ng-hide="orderform.inputEmail.$error.pattern">Your Email</label>
+	                            <label class="help-block" ng-show="orderform.inputEmail.$error.pattern">Not an email yet</label>
+	                        </div>
+	                        <div class="form-group">
+	                            <input type="tel" ng-model="formData.inputPhone" id="inputPhone" name="inputPhone" ng-pattern="/^[0-9.-]{7,14}$/" placeholder="555-555-0000" required>
+	                            <label ng-hide="orderform.inputPhone.$dirty && orderform.inputPhone.$error.pattern">Your Phone Number</label>
+	                            <label class="help-block" ng-show="orderform.inputPhone.$dirty && orderform.inputPhone.$error.pattern">Enter a phone number</label>
+	                        </div>
+	                        <div class="form-group">
+	                            <input type="text" id="inputAddress" name="inputAddress" ng-model="formData.inputAddress" ng-minlength="2" ng-init="formData.inputAddress=''" placeholder="100 Address Street, City, Postal Code">
+	                            <label ng-hide="orderform.inputAddress.$error.minlength">Your Address</label>
+	                            <label class="help-block" ng-show="orderform.inputAddress.$error.minlength">Enter a last name</label>
+	                        </div>
+	                        <div class="form-group">
+	                            <select name="inputOccupation" ng-model="formData.inputOccupation" id="" class="form-control input-lg">
+	                                <option value="" disabled selected>Select an option</option>
+	                                <option ng-repeat="occupation in inputOccupation" ng-value="occupation.value">{{occupation.value}}</option>
+	                            </select>
+	                            <label class="required">Your involvement in the proceedings?</label>
+	                        </div>
+	                        <p ng-show="formData.inputOccupation=='Member of the Public'">*As a member of the public you are required to provide payment upfront based on an estimate made by an Authorized Court Transcriptionist.</p>
+	                        <div class="form-group" ng-show="formData.inputOccupation=='Other'">
+	                            <input type="text" id="inputOccupationOther" name="inputOccupationOther" ng-model="formData.inputOccupationOther" ng-init="formData.inputOccupationOther=''" placeholder="Please Explain...">                        
+	                        </div>
+	                        <div class="form-group" ng-show="formData.inputOccupation=='CLD Other'">
+	                            <input type="text" id="inputOccupationCLDOther" name="inputOccupationCLDOther" ng-model="formData.inputOccupationCLDOther" ng-init="formData.inputOccupationCLDOther=''" placeholder="Please Explain...">              
+	                        </div>
+	                        <div class="form-group">
+	                            <textarea ng-model="formData.inputAdditional" id="inputAdditional" name="inputAdditional" placeholder="I would like to add..." ng-init="formData.inputAdditional=''"></textarea>
+	                            <label for="">Additional Information</label>
+	                        </div>
+	                    </div>
+	                </div>
+	                <hr>
+	                <div class="success-box">
+	                    <p ng-class="result">{{ resultMessage }}</p>
+	                </div>
+	                <div class="form-next text-center">
+	                    <input id="submit" name="submit" type="submit" value="Submit Your Order" ng-disabled="submitButtonDisabled" class="btn btn-default btn-lg">
+	                    <a class="return-link" href="" data-ng-click="goNext(2)" data-toggle="tab" data-step="3" data-progression="66.66">Go Back</a>
+	                </div>
+	                <div class="clear"></div>
+	                
+	            </div>
+	        </div>
+	    </form>
+    </div>
+  </ion-content>
+</ion-view>
